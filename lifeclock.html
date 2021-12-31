@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+
+<style>
+.cheap-show {
+  display:none;
+}
+
+</style>
+
+</head>
+
+<!-- <body onload="checkCookie()"> -->
+<body>
+
+        <blockquote>
+            Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life. Because almost everything - all external expectations, all pride, all fear of embarrassment or failure - these things just fall away in the face of death, leaving only what is truly important. - Steve Jobs
+        </blockquote>
+
+    <p>Date Start: <input type="text" id="date-start"></p>
+    <p>Date End: <input type="text" id="date-end"></p>
+    <button id="btn" type="button" class="btn btn-primary">Primary</button>
+
+    <div id="cheap-show" class="cheap-show">
+      <p>Based on the input information, you probably have the following number of hours left in your life. Use them wisely ;)
+      </p>
+      <h2 id="remaining-hours"></h2>
+    </div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+<script>
+
+
+</script>
+<script>
+
+</script>
+<script type="text/javascript">
+
+</script>
+
+<script>
+    /*
+    // cookies manager
+
+    function setCookie(cname,cvalue,exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires=" + d.toGMTString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    function checkCookie() {
+      var user=getCookie("username");
+      if (user != "") {
+        alert("Welcome again " + user);
+      } else {
+         user = prompt("Please enter your name:","");
+         if (user != "" && user != null) {
+           setCookie("username", user, 30);
+         }
+      }
+    }
+     */
+</script>
+
+<script>
+
+
+        // Get today's date
+        function getDateToday(){
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            //document.write(today);
+            return today;
+        }
+
+
+            // instantiate jqueryUI datepicker
+
+            // $(function () {
+            //     $("#date-start").datepicker();
+            // });
+
+            $("#date-start").datepicker();
+
+            $("#date-end").datepicker();
+
+
+    //let dateStartStr = getDateToday()
+        //var formattedDate = moment(date).format('YYYYMMDD');
+    let dateStart = moment() // new Date(moment(Date.now()).format('MM/DD/YYYY')) //moment().format('L'); //document.querySelector('#date-start').value;   //new Date ( moment(Date.now()).format('MM/DD/YYYY') ); //getDateToday()
+    //console.log(dateStart)
+    //d.toISOString()
+
+    let dateEnd = moment('2060-01-01T00:00:00')
+        //console.log(dateEnd)
+    //'2016-01-01T23:35:01'
+    //moment(new Date("01/01/2060").toISOString());//moment('01/01/2060' , 'MM/DD/YYYY').format('DD/MM/YYYY');//moment("01/01/2060").format('DD/MM/YYYY')// new Date("01/01/2060");//new Date(2060, 1, 1, 0, 0, 0, 0)
+
+    // console.log(dateStart)
+    // let dStart = $("#date-start")
+    // console.log(dStart)
+
+    //dateStart = '01/01/2019'
+    $("#date-start").datepicker("setDate", dateStart.format('L'));
+
+        //dateEnd = '01/01/2019'
+    $("#date-end").datepicker("setDate", dateEnd.format('L')) ;//.format('MM/DD / YYYY')
+
+
+
+
+            // date-range difference calculator
+
+            // JavaScript program to illustrate
+            // calculation of no. of days between two date
+
+            function diffDays(dateStartArg, dateEndArg){
+                // To set two dates to two variables
+                var date1 = dateStartArg // new Date("06/30/2019");
+                var date2 = dateEndArg //new Date("07/30/2019");
+
+                // To calculate the time difference of two dates
+                var Difference_In_Time = date2.getTime() - date1.getTime();
+
+                // To calculate the no. of days between two dates
+                var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+                //To display the final no. of days (result)
+/*
+                document.write("Total number of days between dates <br>"
+                    + date1 + "<br> and <br>"
+                    + date2 + " is: <br> "
+                    + Difference_In_Days);
+                 */
+
+                 return Difference_In_Days
+            }
+
+                function diffHours(dateStartArg, dateEndArg) {
+                    let start = moment(dateStartArg)
+                    //console.log(startTime)
+                    let end = moment(dateEndArg)
+
+                    let hours = end.diff(start, 'hours')
+
+                    //var duration = moment.duration(end.diff(startTime));
+                    //var hours = duration.asHours();
+                    return hours
+                }
+/*
+        let dateStart = document.querySelector('#date-start').value;   //new Date ( moment(Date.now()).format('MM/DD/YYYY') ); //getDateToday()
+        //console.log(dateStart)
+        let dateEnd = document.querySelector('#date-end').value;//moment("01/01/2060").format('DD/MM/YYYY')// new Date("01/01/2060");/*/
+/*
+            console.log(`before diffhours function, dateStart = ${dateStart}`)
+            console.log(`before diffhours function, dateEnd = ${dateEnd}`)
+            let diff = diffHours(dateStart, dateEnd)
+            console.log(diff)
+ */
+
+      let btn = document.querySelector('#btn')
+      btn.addEventListener('click', function (e) {
+        let dateStart = moment(document.querySelector('#date-start').value, 'MM-DD-YYYY');   //new Date ( moment(Date.now()).format('MM/DD/YYYY') ); //getDateToday()
+        //console.log(dateStart)
+        let dateEnd = moment(document.querySelector('#date-end').value, 'MM-DD-YYYY');//moment("01/01/2060").format('DD/MM/YYYY')// new Date("01/01/2060");/*/
+        /*
+                console.log(this.className)           // logs the className of my_element
+                console.log(e.currentTarget === this) // logs `true`
+                 */
+        //let endDate = document.querySelector('#date-end').value
+
+        let popUpSection = document.querySelector('#cheap-show').classList.toggle("cheap-show");
+
+        let remainingHours = document.querySelector('#remaining-hours')
+        let hours = diffHours(dateStart, dateEnd)
+        remainingHours.innerHTML = hours
+        //console.log(endDate)
+      })
+
+
+    //checkCookie()
+</script>
+
+</html>
